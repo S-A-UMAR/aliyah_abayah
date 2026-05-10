@@ -1,0 +1,131 @@
+:root {
+  --forest-green: #1B2B24;
+  --champagne: #F5F5DC;
+  --gold: #D4AF37;
+  --gold-muted: rgba(212, 175, 55, 0.6);
+  --white-translucent: rgba(245, 245, 220, 0.1);
+  
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Montserrat', sans-serif;
+  
+  --spacing-xl: 100px;
+  --spacing-lg: 60px;
+  --spacing-md: 40px;
+  --spacing-sm: 20px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--forest-green);
+  color: var(--champagne);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .serif {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-sm);
+}
+
+.section-padding {
+  padding-top: var(--spacing-xl);
+  padding-bottom: var(--spacing-xl);
+}
+
+.btn-primary {
+  background-color: var(--champagne);
+  color: var(--forest-green);
+  padding: 12px 32px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid var(--champagne);
+}
+
+.btn-primary:hover {
+  background-color: transparent;
+  color: var(--champagne);
+}
+
+.btn-gold {
+  background-color: var(--gold);
+  color: var(--forest-green);
+  padding: 12px 32px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.btn-gold:hover {
+  background-color: transparent;
+  color: var(--gold);
+  box-shadow: inset 0 0 0 1px var(--gold);
+}
+
+.gold-text {
+  color: var(--gold);
+}
+
+/* Animations */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Hide scrollbar for cleaner look */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--forest-green);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gold-muted);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
+}
+
+@media (max-width: 768px) {
+  :root {
+    --spacing-xl: 60px;
+  }
+}
