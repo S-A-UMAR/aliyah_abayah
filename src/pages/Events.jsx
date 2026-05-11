@@ -1,153 +1,71 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, MapPin, Clock, ExternalLink } from 'lucide-react';
+import { Calendar, Clock, MapPin, ExternalLink, CalendarPlus, Send, ShieldCheck } from 'lucide-react';
+import ArabicWatermark from '../components/ArabicWatermark';
 
 const Events = () => {
-  const eventDetails = {
-    title: 'Abuja Pop-Up Sale',
-    date: 'Saturday, 16th May 2026',
-    time: '2:00 PM - 8:00 PM',
-    location: 'Sarkinmota Autos',
-    address: 'Beside NNPC Mega Station, Central Area, Abuja',
-    mapLink: 'https://www.google.com/maps/search/Sarkinmota+Autos+Central+Area+Abuja'
-  };
+  const [formData, setFormData] = useState({ name: '', email: '', guests: '1' });
 
-  const handleAddToCalendar = () => {
-    // Basic .ics generation or simple alert for demo
-    const event = {
-      title: 'Aliyah Abaya Grand Opening',
-      description: 'Grand Opening Pop-Up Sale in Abuja',
-      location: eventDetails.address,
-      start: '20260516T140000',
-      end: '20260516T200000'
-    };
-    
-    const icsContent = `BEGIN:VCALENDAR
-VERSION:2.0
-BEGIN:VEVENT
-SUMMARY:${event.title}
-DESCRIPTION:${event.description}
-LOCATION:${event.location}
-DTSTART:${event.start}
-DTEND:${event.end}
-END:VEVENT
-END:VCALENDAR`;
-
-    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', 'aliyah-abaya-launch.ics');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  const handleRSVP = (e) => {
+    e.preventDefault();
+    const message = `Hello Aliyah Concierge, I would like to RSVP for the Abuja Pop-Up.\n\nName: ${formData.name}\nEmail: ${formData.email}\nGuests: ${formData.guests}`;
+    window.open(`https://wa.me/234000000000?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   return (
-    <div className="events-page section-padding">
-      <div className="container">
-        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-          <header style={{ textAlign: 'center', marginBottom: '80px' }}>
-            <span style={{ color: 'var(--gold)', letterSpacing: '0.3em', textTransform: 'uppercase', fontSize: '0.8rem' }}>The Grand Opening</span>
-            <h1 className="serif" style={{ fontSize: 'clamp(3rem, 8vw, 5rem)', marginTop: '20px' }}>Aliyah Abuja</h1>
-          </header>
-
-          <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
-            gap: '60px',
-            alignItems: 'center'
-          }}>
-            <motion.div 
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <div style={{ backgroundColor: 'rgba(245, 245, 220, 0.05)', padding: '40px', border: '1px solid rgba(212, 175, 55, 0.2)' }}>
-                <div style={{ marginBottom: '30px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '10px' }}>
-                    <Calendar className="gold-text" size={24} />
-                    <span style={{ fontSize: '1.2rem' }}>{eventDetails.date}</span>
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-                    <Clock className="gold-text" size={24} />
-                    <span>{eventDetails.time}</span>
-                  </div>
-                </div>
-
-                <div style={{ marginBottom: '40px' }}>
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '15px', marginBottom: '10px' }}>
-                    <MapPin className="gold-text" size={24} />
-                    <div>
-                      <div style={{ fontSize: '1.2rem', fontWeight: '600' }}>{eventDetails.location}</div>
-                      <p style={{ opacity: 0.7, fontSize: '0.9rem', marginTop: '5px' }}>{eventDetails.address}</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-                  <button onClick={handleAddToCalendar} className="btn-gold" style={{ width: '100%' }}>
-                    Add to Calendar
-                  </button>
-                  <a 
-                    href={eventDetails.mapLink} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="btn-primary" 
-                    style={{ width: '100%', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}
-                  >
-                    Get Directions <ExternalLink size={16} />
-                  </a>
-                </div>
+    <div className="events-page" style={{ backgroundColor: 'var(--forest-green)', color: 'white' }}>
+      
+      {/* SECTION 1: TIMING & LOCATION (Centered Hero) */}
+      <section style={{ minHeight: '100vh', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '120px 20px 60px' }}>
+        <ArabicWatermark top="5%" right="-5%" size="35vw" opacity={0.03} />
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '40px', alignItems: 'center' }}>
+            
+            {/* Left: Timing & Location Card */}
+            <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1 }} style={{ backgroundColor: 'rgba(255,255,255,0.03)', border: '1px solid rgba(212, 175, 55, 0.2)', padding: '60px 40px' }}>
+              <h2 className="serif" style={{ fontSize: '2rem', color: 'var(--gold)', marginBottom: '40px', letterSpacing: '0.1em' }}>Timing & Location</h2>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
+                <div style={{ display: 'flex', gap: '20px', alignItems: 'flex-start' }}><Calendar size={24} color="var(--gold)" /> <p style={{ fontSize: '1.1rem' }}>Saturday, 16th May 2024</p></div>
+                <div style={{ display: 'flex', gap: '20px', alignItems: 'flex-start' }}><Clock size={24} color="var(--gold)" /> <p style={{ fontSize: '1.1rem' }}>2:00 PM – 8:00 PM</p></div>
+                <div style={{ display: 'flex', gap: '20px', alignItems: 'flex-start' }}><MapPin size={24} color="var(--gold)" /> <div><p style={{ fontSize: '1.1rem', fontWeight: '600' }}>Sarkinmota Autos</p><p style={{ opacity: 0.6, fontSize: '0.9rem', marginTop: '5px' }}>Beside NNPC Mega Station, Central Area, Abuja.</p></div></div>
+              </div>
+              <div style={{ marginTop: '50px', display: 'flex', flexDirection: 'column', gap: '15px' }}>
+                <button className="btn-gold" style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>ADD TO CALENDAR <CalendarPlus size={18} /></button>
+                <button className="btn-primary" style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', backgroundColor: 'var(--champagne)', color: 'var(--forest-green)' }}>GET DIRECTIONS <ExternalLink size={18} /></button>
               </div>
             </motion.div>
 
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-              style={{ position: 'relative' }}
-            >
-              <img 
-                src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=1000" 
-                alt="Event Space" 
-                style={{ width: '100%', height: '400px', objectFit: 'cover' }}
-              />
-              <div style={{ 
-                position: 'absolute', 
-                bottom: '-20px', 
-                left: '-20px', 
-                backgroundColor: 'var(--forest-green)', 
-                padding: '20px', 
-                border: '1px solid var(--gold)',
-                maxWidth: '250px'
-              }}>
-                <p className="serif" style={{ fontSize: '1.2rem', fontStyle: 'italic' }}>
-                  "Experience the fabric of elegance in person."
-                </p>
-              </div>
+            {/* Right: Floating Narrative */}
+            <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1, delay: 0.3 }} style={{ border: '1px solid var(--gold)', padding: '50px', maxWidth: '450px', backgroundColor: 'rgba(21, 33, 27, 0.8)', backdropFilter: 'blur(10px)' }}>
+              <p className="serif" style={{ fontSize: '1.6rem', lineHeight: '1.4', color: 'var(--champagne)' }}>"A celebration of heritage and silken artistry in the heart of Abuja."</p>
+              <div style={{ height: '1px', width: '60px', backgroundColor: 'var(--gold)', marginTop: '30px' }}></div>
+              <p style={{ marginTop: '20px', fontSize: '0.8rem', letterSpacing: '0.2em', opacity: 0.5 }}>#ALIYAHINABUJA</p>
             </motion.div>
-          </div>
-
-          <div className="section-padding" style={{ textAlign: 'center' }}>
-            <h2 className="serif" style={{ fontSize: '2rem', marginBottom: '30px' }}>What to Expect</h2>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '30px' }}>
-              <div>
-                <h4 className="gold-text" style={{ marginBottom: '10px' }}>Exclusive Preview</h4>
-                <p style={{ fontSize: '0.9rem', opacity: 0.7 }}>Be the first to see and try on our unreleased Eid collection.</p>
-              </div>
-              <div>
-                <h4 className="gold-text" style={{ marginBottom: '10px' }}>Styling Concierge</h4>
-                <p style={{ fontSize: '0.9rem', opacity: 0.7 }}>Personal styling sessions with Aliyah to find your perfect fit.</p>
-              </div>
-              <div>
-                <h4 className="gold-text" style={{ marginBottom: '10px' }}>Complimentary Treats</h4>
-                <p style={{ fontSize: '0.9rem', opacity: 0.7 }}>Enjoy artisan coffee and dates while you shop in luxury.</p>
-              </div>
-            </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* SECTION 2: THE RSVP GUESTLIST */}
+      <section className="section-padding" style={{ backgroundColor: 'black', position: 'relative' }}>
+        <ArabicWatermark bottom="10%" left="5%" size="30vw" opacity={0.03} />
+        <div className="container" style={{ maxWidth: '600px', textAlign: 'center' }}>
+          <h2 className="serif" style={{ fontSize: '3rem', color: 'var(--gold)' }}>Request Access</h2>
+          <p style={{ opacity: 0.6, letterSpacing: '0.2em', marginTop: '10px', marginBottom: '60px' }}>THE GUESTLIST IS LIMITED</p>
+          
+          <form onSubmit={handleRSVP} style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '30px' }}>
+            <input required type="text" placeholder="Full Name" onChange={(e) => setFormData({...formData, name: e.target.value})} style={{ width: '100%', background: 'none', border: 'none', borderBottom: '1px solid rgba(212, 175, 55, 0.3)', padding: '15px 0', color: 'white', outline: 'none' }} />
+            <input required type="email" placeholder="Email Address" onChange={(e) => setFormData({...formData, email: e.target.value})} style={{ width: '100%', background: 'none', border: 'none', borderBottom: '1px solid rgba(212, 175, 55, 0.3)', padding: '15px 0', color: 'white', outline: 'none' }} />
+            <select onChange={(e) => setFormData({...formData, guests: e.target.value})} style={{ width: '100%', background: 'none', border: 'none', borderBottom: '1px solid rgba(212, 175, 55, 0.3)', padding: '15px 0', color: 'white', outline: 'none' }}>
+              <option value="1">1 Attendee</option>
+              <option value="2">2 Attendees</option>
+              <option value="VIP">VIP Request</option>
+            </select>
+            <button className="btn-gold" style={{ padding: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '15px', marginTop: '30px' }}>Request Invitation <Send size={18} /></button>
+          </form>
+          <div style={{ marginTop: '40px', opacity: 0.3, fontSize: '0.7rem' }}><ShieldCheck size={12} style={{ display: 'inline', marginRight: '5px' }} /> CONFIRMATION WILL BE SENT VIA WHATSAPP</div>
+        </div>
+      </section>
+
     </div>
   );
 };
