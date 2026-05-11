@@ -102,15 +102,16 @@ const Navbar = () => {
               exit={{ x: '-100%' }}
               transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
               style={{ 
-                position: 'fixed', top: 0, left: 0, width: '100%', maxWidth: '550px', height: '100vh',
+                position: 'fixed', top: 0, left: 0, width: '100%', maxWidth: 'min(550px, 90vw)', height: '100vh',
                 backgroundColor: 'var(--forest-green)', zIndex: 6001,
-                display: 'flex', flexDirection: 'column', padding: '120px 60px 60px',
-                borderRight: '1px solid rgba(212, 175, 55, 0.1)'
+                display: 'flex', flexDirection: 'column', padding: 'clamp(80px, 15vh, 120px) clamp(20px, 8vw, 60px) 40px',
+                borderRight: '1px solid rgba(212, 175, 55, 0.1)',
+                overflowY: 'auto'
               }}
             >
               <button 
                 onClick={() => setIsOpen(false)} 
-                style={{ position: 'absolute', top: '40px', left: '60px', color: 'var(--gold)', display: 'flex', alignItems: 'center', gap: '15px' }}
+                style={{ position: 'absolute', top: '40px', left: 'clamp(20px, 8vw, 60px)', color: 'var(--gold)', display: 'flex', alignItems: 'center', gap: '15px' }}
               >
                 <X size={24} />
                 <span style={{ fontSize: '0.7rem', letterSpacing: '0.3em', textTransform: 'uppercase' }}>Close</span>

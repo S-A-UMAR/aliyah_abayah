@@ -105,7 +105,17 @@ const Atelier = () => {
         <div style={{ display: 'flex', gap: '60px', flexWrap: 'wrap' }}>
           {/* Desktop Discovery Sidebar */}
           <aside className="desktop-only" style={{ flex: '0 0 250px' }}>
-            <div style={{ position: 'sticky', top: '120px' }}>
+            <div style={{ 
+              position: 'sticky', 
+              top: '120px', 
+              maxHeight: 'calc(100vh - 160px)', 
+              overflowY: 'auto',
+              scrollbarWidth: 'none', /* Firefox */
+              msOverflowStyle: 'none' /* IE/Edge */
+            }}>
+              <style>{`
+                aside div::-webkit-scrollbar { display: none; }
+              `}</style>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '40px' }}>
                 <SlidersHorizontal size={18} color="var(--gold)" />
                 <span style={{ fontSize: '0.9rem', letterSpacing: '0.2em', textTransform: 'uppercase', fontWeight: '500' }}>Filter By</span>
@@ -228,7 +238,8 @@ const Atelier = () => {
               exit={{ x: '-100%' }}
               style={{ 
                 position: 'absolute', top: 0, left: 0, width: '85%', maxWidth: '350px', height: '100%', 
-                backgroundColor: 'var(--forest-green)', padding: '40px', display: 'flex', flexDirection: 'column' 
+                backgroundColor: 'var(--forest-green)', padding: '40px', display: 'flex', flexDirection: 'column',
+                overflowY: 'auto'
               }}
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px' }}>
@@ -305,8 +316,10 @@ const Atelier = () => {
                 maxWidth: '1000px', 
                 backgroundColor: 'var(--forest-green)', 
                 border: '1px solid rgba(212, 175, 55, 0.3)',
-                maxHeight: '95vh',
-                overflowY: 'auto',
+                maxHeight: '90vh',
+                overflow: 'hidden',
+                display: 'flex',
+                flexDirection: 'column',
                 boxShadow: '0 30px 60px rgba(0,0,0,0.6)',
                 zIndex: 6001
               }}
@@ -326,7 +339,7 @@ const Atelier = () => {
                 </div>
 
                 {/* Modal Details Side */}
-                <div className="modal-details-wrapper" style={{ padding: 'clamp(30px, 5vw, 50px)', display: 'flex', flexDirection: 'column' }}>
+                <div className="modal-details-wrapper" style={{ padding: 'clamp(20px, 5vw, 40px)', display: 'flex', flexDirection: 'column', overflowY: 'auto', maxHeight: '100%' }}>
                   <div style={{ marginBottom: '30px' }}>
                     <span style={{ color: 'var(--gold)', letterSpacing: '0.4em', textTransform: 'uppercase', fontSize: '0.7rem' }}>{selectedProduct.category} Collection</span>
                     <h2 className="serif" style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', marginTop: '10px', lineHeight: '1.1' }}>{selectedProduct.name}</h2>
@@ -421,7 +434,8 @@ const Atelier = () => {
         }
 
         .modal-image-wrapper {
-          height: 600px;
+          height: 100%;
+          min-height: 400px;
           position: relative;
         }
 

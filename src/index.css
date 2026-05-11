@@ -53,15 +53,35 @@ button {
   transition: all 0.3s ease;
 }
 
+/* Core Layout */
 .container {
+  width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 var(--spacing-sm);
+  padding: 0 5vw; /* Fluid side padding */
+  position: relative;
+}
+
+section {
+  position: relative;
+  overflow: visible; /* Ensure content isn't clipped by default */
 }
 
 .section-padding {
-  padding-top: calc(var(--spacing-xl) + 80px);
-  padding-bottom: var(--spacing-xl);
+  padding: clamp(60px, 10vw, 120px) 0;
+}
+
+/* Fluid Typography for better alignment */
+h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 @media (max-width: 768px) {

@@ -38,7 +38,16 @@ const CartDrawer = () => {
                 <ShoppingBag size={24} color="var(--gold)" />
                 <h2 className="serif" style={{ fontSize: '1.8rem' }}>Concierge Bag</h2>
               </div>
-              <X size={28} onClick={() => setIsCartOpen(false)} style={{ cursor: 'pointer', color: 'var(--gold)' }} />
+              <button 
+                onClick={() => setIsCartOpen(false)} 
+                style={{ 
+                  background: 'rgba(212, 175, 55, 0.1)', border: '1px solid var(--gold)', 
+                  borderRadius: '50%', padding: '10px', cursor: 'pointer', color: 'var(--gold)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center'
+                }}
+              >
+                <X size={24} />
+              </button>
             </div>
 
             {/* VIP Progress Bar */}
@@ -64,11 +73,12 @@ const CartDrawer = () => {
             )}
 
             {/* Cart Items */}
-            <div style={{ flex: 1, overflowY: 'auto', padding: '20px' }}>
+            <div style={{ flex: 1, overflowY: 'auto', padding: '20px', scrollbarWidth: 'none' }}>
               {cart.length === 0 ? (
-                <div style={{ textAlign: 'center', marginTop: '100px', opacity: 0.5 }}>
-                  <ShoppingBag size={60} style={{ marginBottom: '20px', strokeWidth: 1 }} />
-                  <p className="serif" style={{ fontSize: '1.2rem' }}>Your bag is currently empty.</p>
+                <div style={{ textAlign: 'center', marginTop: '100px', padding: '0 40px' }}>
+                  <ShoppingBag size={60} style={{ marginBottom: '20px', strokeWidth: 1, opacity: 0.3 }} />
+                  <p className="serif" style={{ fontSize: '1.4rem', marginBottom: '30px' }}>Your bag is currently empty.</p>
+                  <button onClick={() => setIsCartOpen(false)} className="btn-gold" style={{ width: '100%', padding: '15px' }}>RETURN TO ATELIER</button>
                 </div>
               ) : (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '25px' }}>
@@ -95,33 +105,23 @@ const CartDrawer = () => {
                         </div>
                       </div>
 
-                      {/* Bespoke Note */}
                       <div style={{ marginTop: '15px' }}>
                         {activeNoteId === item.cartId ? (
                           <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>
                             <textarea 
-                              placeholder="Bespoke requests (e.g., custom length, gift wrap)..."
+                              placeholder="Bespoke requests..."
                               value={item.note || ''}
                               onChange={(e) => updateNote(item.cartId, e.target.value)}
                               style={{ 
                                 width: '100%', background: 'rgba(212, 175, 55, 0.05)', border: '1px solid var(--gold)', 
-                                padding: '10px', color: 'white', fontSize: '0.8rem', outline: 'none', minHeight: '60px',
-                                borderRadius: '4px'
+                                padding: '10px', color: 'white', fontSize: '0.8rem', outline: 'none', minHeight: '60px'
                               }}
                             />
-                            <button 
-                              onClick={() => setActiveNoteId(null)}
-                              style={{ fontSize: '0.7rem', color: 'var(--gold)', background: 'none', border: 'none', marginTop: '5px', textDecoration: 'underline', cursor: 'pointer' }}
-                            >
-                              Save Bespoke Note
-                            </button>
+                            <button onClick={() => setActiveNoteId(null)} style={{ fontSize: '0.7rem', color: 'var(--gold)', background: 'none', border: 'none', marginTop: '5px', textDecoration: 'underline' }}>Save Note</button>
                           </motion.div>
                         ) : (
-                          <button 
-                            onClick={() => setActiveNoteId(item.cartId)}
-                            style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.7rem', color: 'var(--gold)', opacity: 0.6, background: 'none', border: 'none', cursor: 'pointer' }}
-                          >
-                            <Edit3 size={12} /> {item.note ? 'Edit Bespoke Note' : 'Add Bespoke Note'}
+                          <button onClick={() => setActiveNoteId(item.cartId)} style={{ fontSize: '0.7rem', color: 'var(--gold)', opacity: 0.6, background: 'none', border: 'none' }}>
+                            <Edit3 size={12} /> {item.note ? 'Edit Note' : 'Add Note'}
                           </button>
                         )}
                       </div>
@@ -131,23 +131,15 @@ const CartDrawer = () => {
               )}
             </div>
 
-            {/* Final Action */}
             {cart.length > 0 && (
               <div style={{ padding: '30px', borderTop: '1px solid rgba(212, 175, 55, 0.1)', backgroundColor: 'rgba(0,0,0,0.2)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
-                  <span style={{ opacity: 0.7, letterSpacing: '0.1em', fontSize: '0.8rem' }}>ESTIMATED TOTAL</span>
+                  <span style={{ opacity: 0.7 }}>TOTAL</span>
                   <span style={{ fontSize: '1.4rem', fontWeight: 'bold', color: 'var(--gold)' }}>{formatPrice(totalPrice)}</span>
                 </div>
-                <button 
-                  onClick={() => window.open(getCheckoutUrl(), '_blank')}
-                  className="btn-gold" 
-                  style={{ width: '100%', padding: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '15px' }}
-                >
-                  <MessageCircle size={20} /> Secure Checkout via WhatsApp
+                <button onClick={() => window.open(getCheckoutUrl(), '_blank')} className="btn-gold" style={{ width: '100%', padding: '20px' }}>
+                  <MessageCircle size={20} /> Secure Checkout
                 </button>
-                <p style={{ textAlign: 'center', fontSize: '0.7rem', opacity: 0.4, marginTop: '15px', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-                  A personal concierge will confirm your tailoring
-                </p>
               </div>
             )}
           </motion.div>
