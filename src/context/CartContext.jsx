@@ -75,7 +75,8 @@ export const CartProvider = ({ children }) => {
     return encodeURIComponent(message);
   };
 
-  const checkoutUrl = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${generateWhatsAppMessage()}`;
+  const getCheckoutUrl = () =>
+    `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${generateWhatsAppMessage()}`;
 
   return (
     <CartContext.Provider value={{ 
@@ -88,7 +89,8 @@ export const CartProvider = ({ children }) => {
       setIsCartOpen, 
       totalPrice, 
       formatPrice,
-      checkoutUrl,
+      generateWhatsAppMessage,
+      getCheckoutUrl,
       clearCart
     }}>
       {children}

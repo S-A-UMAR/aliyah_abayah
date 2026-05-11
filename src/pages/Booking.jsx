@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, Clock, User, ChevronRight, Check } from 'lucide-react';
+import { CONFIG } from '../constants';
 
 const Booking = () => {
   const [step, setStep] = useState(1);
@@ -92,7 +93,10 @@ const Booking = () => {
                     <p style={{ fontSize: '0.9rem', color: 'var(--gold)' }}>SUMMARY</p>
                     <p style={{ marginTop: '5px' }}>{bookingData.type} • {bookingData.date} @ Abuja Atelier</p>
                   </div>
-                  <button className="btn-gold" style={{ padding: '18px' }} onClick={() => window.open('https://wa.me/234000000000?text=Booking Request', '_blank')}>Confirm Appointment</button>
+                  <button className="btn-gold" style={{ padding: '18px' }} onClick={() => {
+                    const msg = `Hello Aliyah Concierge, I would like to book a ${bookingData.type} on ${bookingData.date}.`;
+                    window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+                  }}>Confirm Appointment</button>
                 </div>
                 <button onClick={() => setStep(2)} style={{ marginTop: '30px', color: 'var(--gold)', background: 'none', border: 'none', textDecoration: 'underline' }}>Back</button>
               </motion.div>

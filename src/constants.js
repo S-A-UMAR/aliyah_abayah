@@ -5,7 +5,7 @@
 
 export const CONFIG = {
   // Replace with your official WhatsApp Business number (include country code, no + sign)
-  WHATSAPP_NUMBER: "234000000000",
+  WHATSAPP_NUMBER: "2347045003128",
   
   // Brand details
   BRAND_NAME: "ALIYAH",

@@ -4,7 +4,7 @@ import { X, ShoppingBag, Trash2, MessageCircle, Plus, Minus, Edit3, Gift } from 
 import { useCart } from '../context/CartContext';
 
 const CartDrawer = () => {
-  const { cart, removeFromCart, updateQuantity, updateNote, isCartOpen, setIsCartOpen, totalPrice, formatPrice, generateWhatsAppMessage } = useCart();
+  const { cart, removeFromCart, updateQuantity, updateNote, isCartOpen, setIsCartOpen, totalPrice, formatPrice, getCheckoutUrl } = useCart();
   const [activeNoteId, setActiveNoteId] = useState(null);
 
   const VIP_THRESHOLD = 200000;
@@ -139,7 +139,7 @@ const CartDrawer = () => {
                   <span style={{ fontSize: '1.4rem', fontWeight: 'bold', color: 'var(--gold)' }}>{formatPrice(totalPrice)}</span>
                 </div>
                 <button 
-                  onClick={() => window.open(checkoutUrl, '_blank')}
+                  onClick={() => window.open(getCheckoutUrl(), '_blank')}
                   className="btn-gold" 
                   style={{ width: '100%', padding: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '15px' }}
                 >
