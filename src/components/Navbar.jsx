@@ -164,8 +164,12 @@ const Navbar = () => {
               <div style={{ marginTop: '50px', borderTop: '1px solid rgba(212, 175, 55, 0.1)', paddingTop: '40px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <div style={{ display: 'flex', gap: '25px' }}>
-                    <Instagram size={22} color="var(--gold)" />
-                    <MessageCircle size={22} color="var(--gold)" />
+                    <a href="https://instagram.com/aliyah_abayah" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold)' }}>
+                      <Instagram size={22} />
+                    </a>
+                    <a href={`https://wa.me/${CONFIG.WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold)' }}>
+                      <MessageCircle size={22} />
+                    </a>
                   </div>
                   <div style={{ textAlign: 'right' }}>
                     <div style={{ fontSize: '0.6rem', letterSpacing: '0.2em', opacity: 0.4 }}>LOCATION</div>

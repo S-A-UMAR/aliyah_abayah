@@ -87,14 +87,15 @@ const Booking = () => {
               <motion.div key="step3" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
                 <h3 className="serif" style={{ fontSize: '1.8rem', marginBottom: '30px' }}>Final Details</h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                  <input type="text" placeholder="Full Name" style={{ background: 'none', border: '1px solid rgba(212, 175, 55, 0.3)', padding: '15px', color: 'white' }} />
-                  <input type="tel" placeholder="WhatsApp Phone Number" style={{ background: 'none', border: '1px solid rgba(212, 175, 55, 0.3)', padding: '15px', color: 'white' }} />
+                  <input id="clientName" type="text" placeholder="Full Name" style={{ background: 'none', border: '1px solid rgba(212, 175, 55, 0.3)', padding: '15px', color: 'white', outline: 'none' }} />
+                  <input type="tel" placeholder="WhatsApp Phone Number" style={{ background: 'none', border: '1px solid rgba(212, 175, 55, 0.3)', padding: '15px', color: 'white', outline: 'none' }} />
                   <div style={{ padding: '20px', backgroundColor: 'rgba(212, 175, 55, 0.05)', borderLeft: '3px solid var(--gold)' }}>
                     <p style={{ fontSize: '0.9rem', color: 'var(--gold)' }}>SUMMARY</p>
                     <p style={{ marginTop: '5px' }}>{bookingData.type} • {bookingData.date} @ Abuja Atelier</p>
                   </div>
                   <button className="btn-gold" style={{ padding: '18px' }} onClick={() => {
-                    const msg = `Hello Aliyah Concierge, I would like to book a ${bookingData.type} on ${bookingData.date}.`;
+                    const clientName = document.getElementById('clientName').value || 'A Private Client';
+                    const msg = `Hello Aliyah Concierge,\n\nI am ${clientName}. I would like to confirm my booking for a ${bookingData.type} on ${bookingData.date}.`;
                     window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
                   }}>Confirm Appointment</button>
                 </div>

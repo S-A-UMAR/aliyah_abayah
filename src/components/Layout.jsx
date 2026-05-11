@@ -129,7 +129,7 @@ const Layout = ({ children }) => {
 
       <Navbar />
           <CartDrawer />
-          <main style={{ paddingTop: location.pathname === '/' ? '0' : '90px' }}>
+          <main style={{ paddingTop: (location.pathname === '/' || location.pathname === '/lookbook') ? '0' : '90px' }}>
             <PageTransition>
               {children}
             </PageTransition>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Camera, Send } from 'lucide-react';
+import { Instagram, MessageCircle } from 'lucide-react';
+import { CONFIG } from '../constants';
 
 const Footer = () => {
   return (
@@ -69,16 +70,29 @@ const Footer = () => {
             <li>Abuja, Nigeria</li>
             <li>info@aliyahabaya.com</li>
             <li style={{ display: 'flex', gap: '15px', marginTop: '10px' }}>
-              <Camera size={20} />
-              <Send size={20} />
+              <a href="https://instagram.com/aliyah_abayah" target="_blank" rel="noopener noreferrer" style={{ color: 'white' }}>
+                <Instagram size={20} />
+              </a>
+              <a href={`https://wa.me/${CONFIG.WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer" style={{ color: 'white' }}>
+                <MessageCircle size={20} />
+              </a>
             </li>
           </ul>
         </div>
 
         <div>
           <h4 style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '20px' }}>Newsletter</h4>
-          <div style={{ display: 'flex', borderBottom: '1px solid var(--champagne)', paddingBottom: '10px' }}>
+          <form 
+            onSubmit={(e) => {
+              e.preventDefault();
+              const email = e.target.elements[0].value;
+              const message = `Hello Aliyah Concierge, I would like to join the inner circle newsletter.\n\nEmail: ${email}`;
+              window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+            }}
+            style={{ display: 'flex', borderBottom: '1px solid var(--champagne)', paddingBottom: '10px' }}
+          >
             <input 
+              required
               type="email" 
               placeholder="Your email address" 
               style={{ 
@@ -90,8 +104,8 @@ const Footer = () => {
                 outline: 'none'
               }} 
             />
-            <button style={{ color: 'var(--gold)' }}>JOIN</button>
-          </div>
+            <button type="submit" style={{ color: 'var(--gold)', cursor: 'pointer', background: 'none', border: 'none', fontWeight: 'bold' }}>JOIN</button>
+          </form>
         </div>
       </div>
       
