@@ -6,6 +6,7 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import CartDrawer from './CartDrawer';
 import logo from '../pages/logo.png';
+import { CONFIG } from '../constants';
 
 const LoadingScreen = () => {
   return (
@@ -86,7 +87,7 @@ const Layout = ({ children }) => {
         <>
           {/* Global Concierge Button */}
       <motion.a
-        href="https://wa.me/234000000000?text=Hello Aliyah Concierge, I have a question about the collection."
+        href={`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=Hello Aliyah Concierge, I have a question about the collection.`}
         target="_blank"
         rel="noopener noreferrer"
         initial={{ opacity: 0, scale: 0.8 }}

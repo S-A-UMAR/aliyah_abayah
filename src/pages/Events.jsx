@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, Clock, MapPin, ExternalLink, CalendarPlus, Send, ShieldCheck } from 'lucide-react';
 import ArabicWatermark from '../components/ArabicWatermark';
+import { CONFIG } from '../constants';
 
 const Events = () => {
   const [formData, setFormData] = useState({ name: '', email: '', guests: '1' });
@@ -9,7 +10,7 @@ const Events = () => {
   const handleRSVP = (e) => {
     e.preventDefault();
     const message = `Hello Aliyah Concierge, I would like to RSVP for the Abuja Pop-Up.\n\nName: ${formData.name}\nEmail: ${formData.email}\nGuests: ${formData.guests}`;
-    window.open(`https://wa.me/234000000000?text=${encodeURIComponent(message)}`, '_blank');
+    window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   return (

@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Star, Instagram, MessageCircle } from 'lucide-react';
 import ArabicWatermark from '../components/ArabicWatermark';
+import { CONFIG } from '../constants';
 
 // Assets
 import heroAbaya from '../assets/abayas/aliyah_signature_abaya_1_1778404588057.png';
@@ -78,7 +79,7 @@ const Home = () => {
               e.preventDefault();
               const email = e.target.elements[0].value;
               const message = `Hello Aliyah Concierge, I would like to join the inner circle.\n\nEmail: ${email}`;
-              window.open(`https://wa.me/234000000000?text=${encodeURIComponent(message)}`, '_blank');
+              window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
             }}
             style={{ display: 'flex', gap: '10px', maxWidth: '500px', margin: '0 auto', flexWrap: 'wrap' }}
           >

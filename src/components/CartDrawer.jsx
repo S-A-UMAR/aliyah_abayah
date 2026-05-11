@@ -139,7 +139,7 @@ const CartDrawer = () => {
                   <span style={{ fontSize: '1.4rem', fontWeight: 'bold', color: 'var(--gold)' }}>{formatPrice(totalPrice)}</span>
                 </div>
                 <button 
-                  onClick={() => window.open(`https://wa.me/234000000000?text=${generateWhatsAppMessage()}`, '_blank')}
+                  onClick={() => window.open(checkoutUrl, '_blank')}
                   className="btn-gold" 
                   style={{ width: '100%', padding: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '15px' }}
                 >

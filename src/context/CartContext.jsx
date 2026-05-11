@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { CONFIG } from '../constants';
 
 const CartContext = createContext();
 
@@ -50,7 +51,6 @@ export const CartProvider = ({ children }) => {
 
   const clearCart = () => setCart([]);
 
-  // Use priceNum directly for calculations to avoid parsing errors
   const totalPrice = cart.reduce((acc, item) => {
     return acc + (item.priceNum * (item.quantity || 1));
   }, 0);
@@ -75,6 +75,8 @@ export const CartProvider = ({ children }) => {
     return encodeURIComponent(message);
   };
 
+  const checkoutUrl = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${generateWhatsAppMessage()}`;
+
   return (
     <CartContext.Provider value={{ 
       cart, 
@@ -86,7 +88,7 @@ export const CartProvider = ({ children }) => {
       setIsCartOpen, 
       totalPrice, 
       formatPrice,
-      generateWhatsAppMessage,
+      checkoutUrl,
       clearCart
     }}>
       {children}
