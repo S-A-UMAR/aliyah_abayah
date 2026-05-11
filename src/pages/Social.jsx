@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Camera, Send, Heart, MessageCircle } from 'lucide-react';
+import { Camera, Send, Heart, MessageCircle, Instagram } from 'lucide-react';
 
 import abaya1 from '../assets/abayas/aliyah_signature_abaya_1_1778404588057.png';
 import abaya2 from '../assets/abayas/aliyah_occasion_abaya_2_1778404602040.png';
@@ -85,10 +85,10 @@ const Social = () => {
                 </motion.div>
               ))}
             </div>
-            <button className="btn-primary" style={{ width: '100%', marginTop: '30px' }}>Follow on Instagram</button>
+            <button onClick={() => window.open('https://instagram.com/aliyah_abayah', '_blank')} className="btn-primary" style={{ width: '100%', marginTop: '30px' }}>Follow on Instagram</button>
           </motion.div>
 
-          {/* TikTok Side */}
+          {/* Instagram Reels Side */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -97,10 +97,10 @@ const Social = () => {
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '40px' }}>
               <div style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)', padding: '15px', borderRadius: '50%' }}>
-                <Send className="gold-text" size={28} />
+                <Instagram className="gold-text" size={28} />
               </div>
               <div>
-                <h2 className="serif" style={{ fontSize: '1.8rem' }}>aliyah_btz</h2>
+                <h2 className="serif" style={{ fontSize: '1.8rem' }}>aliyah_reels</h2>
                 <p style={{ fontSize: '0.75rem', opacity: 0.5, letterSpacing: '0.1em' }}>BEHIND THE SCENES</p>
               </div>
             </div>
@@ -135,7 +135,7 @@ const Social = () => {
               </motion.div>
               <p style={{ opacity: 0.5, fontStyle: 'italic', marginTop: '20px', zIndex: 1, fontSize: '0.9rem' }}>Preview our latest fabric flow</p>
             </div>
-            <button className="btn-gold" style={{ width: '100%', marginTop: '30px' }}>Join us on TikTok</button>
+            <button onClick={() => window.open('https://instagram.com/aliyah_abayah', '_blank')} className="btn-gold" style={{ width: '100%', marginTop: '30px' }}>Watch on Instagram Reels</button>
           </motion.div>
         </div>
       </div>

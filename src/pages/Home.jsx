@@ -21,11 +21,23 @@ const Home = () => {
           <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'radial-gradient(circle, transparent 20%, var(--forest-green) 90%)' }}></div>
         </div>
 
-        <div className="container" style={{ position: 'relative', zIndex: 2, textAlign: 'center' }}>
+        <div className="container hero-content-container" style={{ position: 'relative', zIndex: 2, textAlign: 'center' }}>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 0.8, y: 0 }} transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }} style={{ marginBottom: '20px' }}>
             <span style={{ fontSize: '3.5rem', color: 'var(--gold)', fontFamily: 'serif' }}>علياه</span>
           </motion.div>
-          <motion.h1 initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.5 }} className="serif" style={{ fontSize: 'clamp(4rem, 15vw, 10rem)', letterSpacing: '0.4em', color: 'white', margin: '0' }}>ALIYAH</motion.h1>
+          <motion.h1 
+            initial={{ opacity: 0, scale: 0.9 }} 
+            animate={{ opacity: 1, scale: 1 }} 
+            transition={{ duration: 1.5 }} 
+            className="serif" 
+            style={{ 
+              fontSize: 'clamp(4rem, 15vw, 10rem)', 
+              letterSpacing: '0.4em', 
+              color: 'white', 
+              margin: '0',
+              paddingLeft: '0.4em' /* Balancing the letter-spacing */
+            }}
+          >ALIYAH</motion.h1>
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 0.8 }} transition={{ delay: 1 }} style={{ letterSpacing: '0.3em', textTransform: 'uppercase', fontSize: '0.8rem', marginTop: '30px' }}>CRAFTING TIMELESS ELEGANCE FOR THE MODERN WOMAN.</motion.p>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.5 }} style={{ display: 'flex', gap: '20px', justifyContent: 'center', marginTop: '60px' }}>
             <Link to="/atelier" className="btn-primary" style={{ backgroundColor: 'white', color: 'var(--forest-green)', padding: '18px 45px' }}>SHOP COLLECTION</Link>

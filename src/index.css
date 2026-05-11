@@ -68,7 +68,14 @@ section {
 }
 
 .section-padding {
-  padding: clamp(60px, 10vw, 120px) 0;
+  padding-top: clamp(140px, 15vh, 180px); /* Significant clearance for the 90px Navbar */
+  padding-bottom: clamp(60px, 10vw, 120px);
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding-top: 130px; /* Specific mobile height */
+  }
 }
 
 /* Fluid Typography for better alignment */
@@ -153,6 +160,11 @@ img {
 
 ::-webkit-scrollbar-track {
   background: var(--forest-green);
+}
+@media (max-width: 768px) {
+  .hero-content-container {
+    padding-top: 60px;
+  }
 }
 
 ::-webkit-scrollbar-thumb {

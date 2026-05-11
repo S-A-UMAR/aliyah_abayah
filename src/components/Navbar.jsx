@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ShoppingBag, Heart, Globe, Instagram, MessageCircle } from 'lucide-react';
+import { Menu, X, ShoppingBag, Heart, Globe, Instagram, MessageCircle, ChevronLeft } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
 import { useCurrency } from '../context/CurrencyContext';
@@ -9,6 +9,7 @@ import { useCurrency } from '../context/CurrencyContext';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const { setIsCartOpen, cart } = useCart();
   const { wishlist } = useWishlist();
   const { currency, toggleCurrency } = useCurrency();
@@ -38,15 +39,24 @@ const Navbar = () => {
       }}>
         <div className="container" style={{ width: '100%', display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center' }}>
           
-          {/* Left: Menu Trigger */}
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          {/* Left: Menu & Back Trigger */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
             <button 
               onClick={() => setIsOpen(true)}
-              style={{ color: 'var(--gold)', display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}
+              style={{ color: 'var(--gold)', display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', background: 'none', border: 'none', padding: 0 }}
             >
               <Menu size={24} />
               <span className="desktop-only" style={{ fontSize: '0.7rem', letterSpacing: '0.3em', textTransform: 'uppercase' }}>Menu</span>
             </button>
+            {location.pathname !== '/' && (
+              <button 
+                onClick={() => navigate(-1)}
+                style={{ color: 'var(--gold)', display: 'flex', alignItems: 'center', gap: '5px', cursor: 'pointer', paddingLeft: '15px', borderLeft: '1px solid rgba(212, 175, 55, 0.2)', background: 'none', borderTop: 'none', borderRight: 'none', borderBottom: 'none' }}
+              >
+                <ChevronLeft size={20} />
+                <span className="desktop-only" style={{ fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase' }}>Back</span>
+              </button>
+            )}
           </div>
 
           {/* Center: Pure Brand Identity */}

@@ -32,13 +32,13 @@ const Footer = () => {
       </div>
       <div className="container" style={{ 
         display: 'grid', 
-        gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
+        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
         gap: '60px' 
       }}>
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '20px' }}>
-            <h3 className="serif" style={{ fontSize: '1.5rem' }}>ALIYAH ABAYA</h3>
-            <span style={{ fontSize: '1.2rem', color: 'var(--gold)' }}>علياه</span>
+            <h3 className="serif" style={{ fontSize: '1.5rem', letterSpacing: '0.1em', paddingLeft: '0.1em' }}>ALIYAH ABAYA</h3>
+            <span style={{ fontSize: '1.2rem', color: 'var(--gold)', letterSpacing: '0.1em', paddingLeft: '0.1em' }}>علياه</span>
           </div>
           <p style={{ fontSize: '0.9rem', opacity: 0.7, maxWidth: '300px' }}>
             Timeless Abaya elegance crafted for the modern woman. Our pieces are more than just Abayas; they are a legacy of grace.

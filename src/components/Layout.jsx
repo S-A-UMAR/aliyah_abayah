@@ -25,25 +25,46 @@ const LoadingScreen = () => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        padding: '20px'
       }}
     >
       <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
-        style={{ textAlign: 'center' }}
+        style={{ 
+          display: 'flex', 
+          flexDirection: 'column', 
+          alignItems: 'center', 
+          textAlign: 'center' 
+        }}
       >
-        <img src={logo} alt="Aliyah Logo" style={{ width: '120px', height: '120px', borderRadius: '50%', border: '1px solid var(--gold)', marginBottom: '30px' }} />
-        <h2 className="serif" style={{ fontSize: '2.5rem', letterSpacing: '0.2em' }}>ALIYAH</h2>
-        <span style={{ color: 'var(--gold)', letterSpacing: '0.4em', textTransform: 'uppercase', fontSize: '0.8rem' }}>علياه</span>
+        <div style={{ 
+          width: 'clamp(100px, 15vw, 140px)', 
+          height: 'clamp(100px, 15vw, 140px)', 
+          borderRadius: '50%', 
+          border: '1px solid var(--gold)', 
+          marginBottom: '40px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          overflow: 'hidden',
+          padding: '15px'
+        }}>
+          <img src={logo} alt="Aliyah Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+        </div>
+        
+        <h2 className="serif" style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', letterSpacing: '0.3em', paddingLeft: '0.3em', margin: '0 0 10px 0', lineHeight: 1 }}>ALIYAH</h2>
+        <span style={{ color: 'var(--gold)', letterSpacing: '0.6em', textTransform: 'uppercase', fontSize: 'clamp(0.7rem, 2vw, 0.9rem)', marginLeft: '0.6em' }}>علياه</span>
+        
+        <motion.div 
+          initial={{ width: 0, opacity: 0 }}
+          animate={{ width: '80px', opacity: 1 }}
+          transition={{ duration: 2, delay: 0.5, ease: "easeInOut" }}
+          style={{ height: '1px', backgroundColor: 'var(--gold)', marginTop: '50px' }}
+        />
       </motion.div>
-      <motion.div 
-        initial={{ width: 0 }}
-        animate={{ width: '100px' }}
-        transition={{ duration: 2, ease: "easeInOut" }}
-        style={{ height: '1px', backgroundColor: 'var(--gold)', marginTop: '40px' }}
-      />
     </motion.div>
   );
 };
@@ -68,6 +89,7 @@ const PageTransition = ({ children }) => {
 
 const Layout = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
+  const location = useLocation();
 
   useEffect(() => {
     // Cinematic load time
@@ -107,7 +129,7 @@ const Layout = ({ children }) => {
 
       <Navbar />
           <CartDrawer />
-          <main>
+          <main style={{ paddingTop: location.pathname === '/' ? '0' : '90px' }}>
             <PageTransition>
               {children}
             </PageTransition>
