@@ -19,7 +19,7 @@ const CartDrawer = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsCartOpen(false)}
-            style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(5px)', zIndex: 4000 }}
+            style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(5px)', zIndex: 6000 }}
           />
           <motion.div
             initial={{ x: '100%' }}
@@ -28,7 +28,7 @@ const CartDrawer = () => {
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
             style={{ 
               position: 'fixed', top: 0, right: 0, width: '100%', maxWidth: '450px', height: '100%', 
-              backgroundColor: 'var(--forest-green)', color: 'white', zIndex: 4001, display: 'flex', flexDirection: 'column',
+              backgroundColor: 'var(--forest-green)', color: 'white', zIndex: 6001, display: 'flex', flexDirection: 'column',
               boxShadow: '-10px 0 30px rgba(0,0,0,0.3)'
             }}
           >
