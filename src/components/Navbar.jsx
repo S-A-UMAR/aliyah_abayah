@@ -5,6 +5,7 @@ import { Menu, X, ShoppingBag, Heart, Globe, Instagram, MessageCircle, ChevronLe
 import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
 import { useCurrency } from '../context/CurrencyContext';
+import { CONFIG } from '../constants';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -51,7 +52,7 @@ const Navbar = () => {
             {location.pathname !== '/' && (
               <button 
                 onClick={() => navigate(-1)}
-                style={{ color: 'var(--gold)', display: 'flex', alignItems: 'center', gap: '5px', cursor: 'pointer', paddingLeft: '15px', borderLeft: '1px solid rgba(212, 175, 55, 0.2)', background: 'none', borderTop: 'none', borderRight: 'none', borderBottom: 'none' }}
+                style={{ color: 'var(--gold)', display: 'flex', alignItems: 'center', gap: '5px', cursor: 'pointer', paddingLeft: '15px', borderLeft: '1px solid rgba(212, 175, 55, 0.2)', background: 'none', border: 'none' }}
               >
                 <ChevronLeft size={20} />
                 <span className="desktop-only" style={{ fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase' }}>Back</span>
@@ -104,7 +105,7 @@ const Navbar = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100vh', backgroundColor: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(15px)', zIndex: 6000 }}
+              style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100vh', backgroundColor: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(20px)', zIndex: 6000 }}
             />
             <motion.div
               initial={{ x: '-100%' }}
@@ -112,22 +113,27 @@ const Navbar = () => {
               exit={{ x: '-100%' }}
               transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
               style={{ 
-                position: 'fixed', top: 0, left: 0, width: '100%', maxWidth: 'min(550px, 90vw)', height: '100vh',
-                backgroundColor: 'var(--forest-green)', zIndex: 6001,
-                display: 'flex', flexDirection: 'column', padding: 'clamp(80px, 15vh, 120px) clamp(20px, 8vw, 60px) 40px',
+                position: 'fixed', top: 0, left: 0, width: '100%', maxWidth: 'min(500px, 85vw)', height: '100vh',
+                background: 'linear-gradient(135deg, #0A120E 0%, var(--forest-green) 100%)', zIndex: 6001,
+                display: 'flex', flexDirection: 'column', padding: 'clamp(60px, 10vh, 100px) clamp(20px, 6vw, 40px) 40px',
                 borderRight: '1px solid rgba(212, 175, 55, 0.1)',
-                overflowY: 'auto'
+                overflowY: 'auto',
+                boxShadow: '20px 0 50px rgba(0,0,0,0.5)'
               }}
             >
               <button 
                 onClick={() => setIsOpen(false)} 
-                style={{ position: 'absolute', top: '40px', left: 'clamp(20px, 8vw, 60px)', color: 'var(--gold)', display: 'flex', alignItems: 'center', gap: '15px' }}
+                style={{ position: 'absolute', top: '40px', right: '30px', color: 'var(--gold)', display: 'flex', alignItems: 'center', gap: '10px', background: 'rgba(212, 175, 55, 0.05)', padding: '8px 15px', borderRadius: '20px', border: '1px solid rgba(212, 175, 55, 0.2)' }}
               >
-                <X size={24} />
-                <span style={{ fontSize: '0.7rem', letterSpacing: '0.3em', textTransform: 'uppercase' }}>Close</span>
+                <X size={20} />
+                <span style={{ fontSize: '0.6rem', letterSpacing: '0.3em', textTransform: 'uppercase' }}>Close</span>
               </button>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '30px', flex: 1 }}>
+              <div style={{ marginBottom: '40px' }}>
+                 <h3 style={{ fontSize: '0.6rem', letterSpacing: '0.4em', color: 'var(--gold)', opacity: 0.6, marginBottom: '20px' }}>NAVIGATION</h3>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', flex: 1 }}>
                 {navLinks.map((link, idx) => (
                   <motion.div 
                     key={link.path}
@@ -140,10 +146,10 @@ const Navbar = () => {
                       onClick={() => setIsOpen(false)} 
                       style={{ group: 'true', display: 'block' }}
                     >
-                      <div style={{ display: 'flex', alignItems: 'baseline', gap: '20px' }}>
-                        <span style={{ fontSize: '0.75rem', color: 'var(--gold)', opacity: 0.3 }}>0{idx + 1}</span>
+                      <div style={{ display: 'flex', alignItems: 'baseline', gap: '15px' }}>
+                        <span style={{ fontSize: '0.65rem', color: 'var(--gold)', opacity: 0.3, width: '25px' }}>0{idx + 1}</span>
                         <h2 className="serif" style={{ 
-                          fontSize: 'clamp(2rem, 5vw, 3rem)', 
+                          fontSize: 'clamp(1.8rem, 4vw, 2.5rem)', 
                           color: isActive(link.path) ? 'var(--gold)' : 'white',
                           lineHeight: '1.1',
                           transition: 'all 0.3s ease'
@@ -151,9 +157,9 @@ const Navbar = () => {
                           {link.name}
                         </h2>
                       </div>
-                      <div style={{ display: 'flex', gap: '15px', alignItems: 'center', marginLeft: '45px', marginTop: '5px' }}>
-                         <span style={{ fontSize: '0.9rem', color: 'var(--gold)', letterSpacing: '0.2em', opacity: 0.6 }}>{link.arabic}</span>
-                         <span className="desktop-only" style={{ fontSize: '0.6rem', color: 'white', opacity: 0.3, letterSpacing: '0.1em' }}>— {link.desc}</span>
+                      <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginLeft: '40px', marginTop: '4px' }}>
+                         <span style={{ fontSize: '0.8rem', color: 'var(--gold)', letterSpacing: '0.2em', opacity: 0.6 }}>{link.arabic}</span>
+                         <span className="desktop-only" style={{ fontSize: '0.55rem', color: 'white', opacity: 0.2, letterSpacing: '0.1em' }}>— {link.desc}</span>
                       </div>
                     </Link>
                   </motion.div>
@@ -161,19 +167,19 @@ const Navbar = () => {
               </div>
 
               {/* Bottom Menu Branding */}
-              <div style={{ marginTop: '50px', borderTop: '1px solid rgba(212, 175, 55, 0.1)', paddingTop: '40px' }}>
+              <div style={{ marginTop: '40px', borderTop: '1px solid rgba(212, 175, 55, 0.1)', paddingTop: '30px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <div style={{ display: 'flex', gap: '25px' }}>
-                    <a href="https://instagram.com/aliyah_abayah" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold)' }}>
-                      <Instagram size={22} />
+                  <div style={{ display: 'flex', gap: '20px' }}>
+                    <a href="https://instagram.com/aliyah_abayah" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold)', background: 'rgba(212, 175, 55, 0.05)', padding: '10px', borderRadius: '50%', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <Instagram size={18} />
                     </a>
-                    <a href={`https://wa.me/${CONFIG.WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold)' }}>
-                      <MessageCircle size={22} />
+                    <a href={`https://wa.me/${CONFIG.WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold)', background: 'rgba(212, 175, 55, 0.05)', padding: '10px', borderRadius: '50%', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <MessageCircle size={18} />
                     </a>
                   </div>
                   <div style={{ textAlign: 'right' }}>
-                    <div style={{ fontSize: '0.6rem', letterSpacing: '0.2em', opacity: 0.4 }}>LOCATION</div>
-                    <div style={{ fontSize: '0.8rem', color: 'var(--gold)' }}>ABUJA ATELIER</div>
+                    <div style={{ fontSize: '0.55rem', letterSpacing: '0.2em', opacity: 0.4 }}>LOCATION</div>
+                    <div style={{ fontSize: '0.75rem', color: 'var(--gold)' }}>ABUJA ATELIER</div>
                   </div>
                 </div>
               </div>

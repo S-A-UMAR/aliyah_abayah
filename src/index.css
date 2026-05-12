@@ -98,6 +98,26 @@ img {
   }
 }
 
+.desktop-only {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none !important;
+  }
+}
+
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-only {
+    display: block !important;
+  }
+}
+
 .btn-primary {
   background-color: var(--champagne);
   color: var(--forest-green);
